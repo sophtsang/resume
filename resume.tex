@@ -1,0 +1,177 @@
+%-------------------------------------------------------------------------------
+% Sophia Tsang -- Resume
+% Compile with pdfLaTeX (e.g., on Overleaf). Single-column, ATS-friendly.
+%-------------------------------------------------------------------------------
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{accsupp}
+\usepackage[empty]{fullpage}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage{lmodern}
+\usepackage[lining]{ebgaramond}
+
+% Make the PDF text machine-readable for applicant tracking systems
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\pagestyle{empty}
+\raggedright
+\setlength{\tabcolsep}{0in}
+\urlstyle{same}
+
+% Section formatting
+\titleformat{\section}
+  {\vspace{-10pt}\scshape\raggedright\largish\bfseries}
+  {}{0em}{}[\color{black}\titlerule\vspace{-4pt}]
+
+% Links: underlined, same color as text
+\newcommand{\link}[2]{\href{#1}{\underline{#2}}}
+
+\newcommand{\largish}{\fontsize{14pt}{14pt}\selectfont}
+
+% Entry heading: left text, right text, on one line
+\newcommand{\entry}[4]{%
+  \item
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    #1 & #2 \\
+    #3 & #4 \\
+  \end{tabular*}\vspace{-6pt}}
+
+\newcommand{\education}[4]{%
+  \item
+  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    #1 & #2 \\
+    #3 & #4
+  \end{tabular*}}
+
+\newcommand{\project}[2]{%
+  \item
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    #1 & #2 \\
+  \end{tabular*}\vspace{-6pt}}
+
+\newcommand{\bullets}{\begin{itemize}[leftmargin=0.18in, itemsep=0pt, topsep=3pt, label=\textbullet]}
+\newcommand{\bulletsend}{\end{itemize}\vspace{-3pt}}
+\newcommand{\entries}{\begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]}
+\newcommand{\entriesend}{\end{itemize}}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+  {\Huge \textbf{Sophia Tsang}} \\ \vspace{3pt}
+  \small 609-955-2453 $|$
+  \href{mailto:xt73@cornell.edu}{\underline{xt73@cornell.edu}} $|$
+  \link{https://sophtsang.github.io}{sophtsang.github.io} $|$
+  \link{https://github.com/sophtsang}{github.com/sophtsang} $|$
+  \link{https://linkedin.com/in/xueqing-tsang}{linkedin.com/in/xueqing-tsang}
+\end{center}
+
+%----------EDUCATION----------
+\section{Education}
+\entries
+    \education{\textbf{Cornell University}, College of Engineering}{\textbf{Expected May 2027}}
+            {\textit{Bachelor of Science in Computer Science, Minor in Robotics}}{\textbf{GPA: 3.923}}
+    \textbf{\textit{Relevant Courses:}} Frontiers of Computer Vision, Intro to ML,
+        Foundations of Robotics, Robot Learning, Robot Perception, Intro to Game Architecture,
+        Analysis of Algorithms, Formal Verification, Differential Equations, Discrete Mathematics
+\entriesend
+
+%----------EXPERIENCE----------
+\section{Experience}
+\entries
+  \entry{\large \scshape \textbf{MIT Lincoln Laboratory}}{\textbf{Lexington, MA}}
+        {\textbf{Software Engineering and Robotics Intern} \small $|$ Python, PyTorch, TensorFlow, Docker, ROS2, VIO}{\textbf{\small May 2026 -- Aug 2026}}
+  \bullets
+    \item Built an end-to-end 3D terrain reconstruction pipeline for UAV imagery, recovering 3D
+      surface geometry from \textit{limited-perspective aerial views in real time} and achieving
+      \textbf{92.0\% geometric accuracy} against LiDAR ground-truth terrain
+    \item Adapted \link{https://arxiv.org/html/2412.13047v1}{\textit{EOGS satellite photogrammetry}}
+      approach to UAV imagery, combining RPC camera modeling with VIO-based sun estimation to
+      incorporate \textit{physically accurate shadow geometry} as an additional geometric cue for
+      Gaussian splatting
+    \item Optimized the real-time processing pipeline by leveraging multiprocessing to decouple
+      ROS2 camera stream dataset updates from background depth estimation, enabling
+      \textit{non-blocking data ingestion and continuous, live 3D map generation}
+  \bulletsend
+
+  \entry{\large \scshape \link{https://www.cornellelectricvehicles.org/}{\textbf{Cornell Electric Vehicles}}}{\textbf{Ithaca, NY}}
+        {\textbf{Perception Lead, Autonomy Engineer} \small $|$ Rust, Python, C++, PyTorch, ROS2, Docker}{\textbf{\small Oct 2024 -- Present}}
+  \bullets
+    \item Built a \textit{Rust LiDAR driver} with a calibrated sensor measurement model, decoding
+      raw UDP packets and applying range, angular, timing, and sensor-offset corrections to
+      generate 3D point clouds for \textit{live obstacle detection}
+    \item Developed C++ and Rust implementations of
+      \link{https://www.mdpi.com/2076-3417/10/23/8534}{\textit{real-time two-layer-graph clustering}}
+      on \textbf{80k+ points}, reducing LiDAR scan latency \textbf{10$\times$} to
+      \textbf{20--30 ms} for dynamic obstacle region generation and detection, tracking, and
+      longer-horizon planning
+    \item Implemented a \textit{real-time} point cloud to costmap algorithm that constructs accurate
+      representations of free-space and obstacle regions around the vehicle,
+      \textit{enabling accurate and continuous spatial mapping} for path planning
+  \bulletsend
+
+  \entry{\large \scshape \textbf{Noah Snavely Research Group}}{\textbf{Roosevelt Island, NY}}
+        {\link{https://github.com/sophtsang/im_map}{\textbf{Research Intern}} \small $|$ PyTorch, COLMAP, CUDA, Gemini, GCP, Flask, Render, React, Three.js, WebGL}{\textbf{\small June 2025 -- Jan 2026}}
+  \bullets
+    \item Co-authored ECCV 2026 paper, ``Honey, I Shrunk the Arc de Triomphe'', on
+      \link{https://arxiv.org/pdf/2606.02379}{\textit{metric-scale monocular geometry estimation}}
+    \item Developed the \textit{geo-referencing pipeline} that scales SfM reconstructions to absolute
+      metric scale by leveraging geo-tagged imagery, optimizing viewpoint selection to improve
+      large-scale 3D scene reconstruction
+    \item Expanded \link{https://doppelgangers25.github.io/doppelgangers_plusplus/}{Doppelgangers++}
+      into a vision-language network that performs \textit{end-to-end 3D reconstruction}, designed to
+      visually disambiguate between distinct, yet look-alike surfaces and serve as a
+      \textit{more robust alternative to classical SfM}
+    \item Built a web viewer that runs on React, WebGL, and Flask to render
+      \textbf{4k+ doppelganger-pruned 3D reconstructions}
+  \bulletsend
+
+\entriesend
+
+%----------PROJECTS----------
+\section{Projects}
+\entries
+
+  \project{\link{https://gdiac.cs.cornell.edu/gdiac/showcase/games/re_color/}{\textbf{Re:Color}} \small $|$ {Java, LibGDX, Agile Project Management}}{\textbf{\small Jan 2026 -- May 2026}}
+  \bullets
+    \item Designed a color-based gameplay system with 7 other developers, enabling players to
+      recolor the world by painting and absorbing color from the 2D platformer environment, and
+      shipped the game \textit{live} at GDIAC Showcase to \textbf{400+ attendees}
+    \item Developed core player systems by implementing a behavior tree for
+      \textit{player state management}, synchronizing animations and refining movement physics,
+      and building a \textit{custom paint splatter rendering engine}
+  \bulletsend
+
+  \project{\link{https://sophtsang.github.io/}{\textbf{3D Desktop Simulation}} \small $|$ {Python, Flask, C\#, Unity, React, Three.js, WebGL, REST, WebSocket, GCP}}{\textbf{\small July 2025 -- Present}}
+  \bullets
+    \item Built an interactive 3D desktop environment using Three.js for
+      \textit{real-time 3D rendering}, simulating a computer interface with custom GLSL fragment
+      shaders and draggable project apps displayed in popup browser windows
+  \bulletsend
+
+\entriesend
+
+%----------SKILLS----------
+\section{Skills}
+\begin{itemize}[leftmargin=0in, label={}]
+  \small{\item{
+    \textbf{\textit{Languages:}} Python, C/C++, C\#, Java, Rocq, OCaml, JavaScript/TypeScript, SQL,
+      HTML, CSS, Verilog, Rust \\
+    \textbf{\textit{Frameworks/Libraries:}} PyTorch, NumPy, Pandas, React.js, Three.js, Flask,
+      OpenCV, sqlite3, WebGL, Matplotlib \\
+    \textbf{\textit{Tools:}} Git, CI/CD, ROS2, Linux, Docker, VSCode, LibGDX, Unity, Render, GCP,
+      Figma, Fusion 360, Slurm
+  }}
+\end{itemize}
+
+\end{document}
