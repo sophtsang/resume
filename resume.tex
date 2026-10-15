@@ -29,13 +29,19 @@
 
 % Section formatting
 \titleformat{\section}
-  {\vspace{-10pt}\scshape\raggedright\largish\bfseries}
+  {\vspace{-8pt}\scshape\raggedright\largish\bfseries}
   {}{0em}{}[\color{black}\titlerule\vspace{-4pt}]
 
-% Links: underlined, same color as text
-\newcommand{\link}[2]{\href{#1}{\underline{#2}}}
+\usepackage[normalem]{ulem}   % normalem keeps \emph as italics
+\setlength{\ULdepth}{2pt}     % distance from baseline down to the underline
+\renewcommand{\ULthickness}{0.4pt}  % line thickness
+
+\newcommand{\link}[2]{\href{#1}{\uline{#2}}}
 
 \newcommand{\largish}{\fontsize{14pt}{14pt}\selectfont}
+
+% Line spacing for bullets and education text (second number = spacing)
+\newcommand{\bodyspacing}{\fontsize{11pt}{14pt}\selectfont}
 
 % Entry heading: left text, right text, on one line
 \newcommand{\entry}[4]{%
@@ -45,12 +51,9 @@
     #3 & #4 \\
   \end{tabular*}\vspace{-6pt}}
 
-\newcommand{\education}[4]{%
-  \item
-  \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    #1 & #2 \\
-    #3 & #4
-  \end{tabular*}}
+\newcommand{\education}[4]{\vspace{2pt}%
+  \item #1 \hfill #2 \\
+  #3 \hfill #4 \\}
 
 \newcommand{\project}[2]{%
   \item
@@ -58,18 +61,18 @@
     #1 & #2 \\
   \end{tabular*}\vspace{-6pt}}
 
-\newcommand{\bullets}{\begin{itemize}[leftmargin=0.18in, itemsep=1pt, topsep=3pt, label=\textbullet]}
+\newcommand{\bullets}{\begin{itemize}[leftmargin=0.18in, itemsep=0pt, parsep=0pt, topsep=3pt, partopsep=0pt, label=\textbullet]}
 \newcommand{\bulletsend}{\end{itemize}\vspace{-3pt}}
-\newcommand{\entries}{\begin{itemize}[leftmargin=0in, label={}, itemsep=2pt]}
+\newcommand{\entries}{\begin{itemize}[leftmargin=0in, label={}, itemsep=0pt]}
 \newcommand{\entriesend}{\end{itemize}}
 
 %-------------------------------------------------------------------------------
-\begin{document}
+\begin{document} \fontsize{11pt}{14pt}\selectfont
 
 %----------HEADING----------
 \begin{center}
   {\fontsize{19pt}{19pt} \textbf{Sophia Tsang}} \\ \vspace{3pt}
-  \small 609-955-2453 $|$
+   +1-609-955-2453 $|$
   \href{mailto:xt73@cornell.edu}{\underline{xt73@cornell.edu}} $|$
   \link{https://sophtsang.github.io}{sophtsang.github.io} $|$
   \link{https://github.com/sophtsang}{github.com/sophtsang} $|$
@@ -90,7 +93,7 @@
 \section{Experience}
 \entries
   \entry{\large \scshape \textbf{MIT Lincoln Laboratory}}{\textbf{Lexington, MA}}
-        {\textbf{Software Engineering and Robotics Intern} \small $|$ Python, PyTorch, TensorFlow, Docker, ROS2, VIO}{\textbf{\small May 2026 -- Aug 2026}}
+        {\textbf{Software Engineering and Robotics Intern}  $|$ Python, PyTorch, TensorFlow, Docker, ROS2, VIO}{\textbf{May 2026 -- Aug 2026}}
   \bullets
     \item Built an end-to-end 3D terrain reconstruction pipeline for UAV imagery, recovering 3D
       surface geometry from \textit{limited-perspective aerial views in real time} and achieving
@@ -105,7 +108,7 @@
   \bulletsend
 
   \entry{\large \scshape \link{https://www.cornellelectricvehicles.org/}{\textbf{Cornell Electric Vehicles}}}{\textbf{Ithaca, NY}}
-        {\textbf{Perception Lead, Autonomy Engineer} \small $|$ Rust, Python, C++, PyTorch, ROS2, Docker}{\textbf{\small Oct 2024 -- Present}}
+        {\textbf{Perception Lead, Autonomy Engineer}  $|$ Rust, Python, C++, PyTorch, ROS2, Docker}{\textbf{Oct 2024 -- Present}}
   \bullets
     \item Built a \textit{Rust LiDAR driver} with a calibrated sensor measurement model, decoding
       raw UDP packets and applying range, angular, timing, and sensor-offset corrections to
@@ -121,7 +124,7 @@
   \bulletsend
 
   \entry{\large \scshape \textbf{Noah Snavely Research Group}}{\textbf{Roosevelt Island, NY}}
-        {\link{https://github.com/sophtsang/im_map}{\textbf{Research Intern}} \small $|$ PyTorch, COLMAP, CUDA, Gemini, GCP, Flask, Render, React, Three.js, WebGL}{\textbf{\small June 2025 -- Jan 2026}}
+        {\link{https://github.com/sophtsang/im_map}{\textbf{Research Intern}} $|$ PyTorch, COLMAP, CUDA, Gemini, GCP, Flask, Render, React, Three.js, WebGL}{\textbf{June 2025 -- Jan 2026}}
   \bullets
     \item Co-authored ECCV 2026 paper, ``Honey, I Shrunk the Arc de Triomphe'', on
       \link{https://arxiv.org/pdf/2606.02379}{\textit{metric-scale monocular geometry estimation}}
@@ -142,7 +145,7 @@
 \section{Projects}
 \entries
 
-  \project{\link{https://gdiac.cs.cornell.edu/gdiac/showcase/games/re_color/}{\textbf{Re:Color}} \small $|$ {Java, LibGDX, Agile Project Management}}{\textbf{\small Jan 2026 -- May 2026}}
+  \project{\link{https://gdiac.cs.cornell.edu/gdiac/showcase/games/re_color/}{\textbf{Re:Color}} $|$ {Java, LibGDX, Agile Project Management}}{\textbf{Jan 2026 -- May 2026}}
   \bullets
     \item Designed a color-based gameplay system with 7 other developers, enabling players to
       recolor the world by painting and absorbing color from the 2D platformer environment, and
@@ -152,7 +155,7 @@
       and building a \textit{custom paint splatter rendering engine}
   \bulletsend
 
-  \project{\link{https://sophtsang.github.io/}{\textbf{3D Desktop Simulation}} \small $|$ {Python, Flask, C\#, Unity, React, Three.js, WebGL, REST, WebSocket, GCP}}{\textbf{\small July 2025 -- Present}}
+  \project{\link{https://sophtsang.github.io/}{\textbf{3D Desktop Simulation}}  $|$ {Python, Flask, C\#, Unity, React, Three.js, WebGL, REST, WebSocket, GCP}}{\textbf{ July 2025 -- Present}}
   \bullets
     \item Built an interactive 3D desktop environment using Three.js for
       \textit{real-time 3D rendering}, simulating a computer interface with custom GLSL fragment
