@@ -30,7 +30,7 @@
 % Section formatting
 \titleformat{\section}
   {\vspace{-8pt}\scshape\raggedright\largish\bfseries}
-  {}{0em}{}[\color{black}\titlerule\vspace{-4pt}]
+  {}{0em}{}[\color{black}\titlerule\vspace{-6pt}]
 
 \usepackage[normalem]{ulem}   % normalem keeps \emph as italics
 \setlength{\ULdepth}{2pt}     % distance from baseline down to the underline
@@ -72,7 +72,7 @@
 %----------HEADING----------
 \begin{center}
   {\fontsize{19pt}{19pt} \textbf{Sophia Tsang}} \\ \vspace{3pt}
-   +1-609-955-2453 $|$
+   609-955-2453 $|$
   \href{mailto:xt73@cornell.edu}{\underline{xt73@cornell.edu}} $|$
   \link{https://sophtsang.github.io}{sophtsang.github.io} $|$
   \link{https://github.com/sophtsang}{github.com/sophtsang} $|$
@@ -108,7 +108,7 @@
   \bulletsend
 
   \entry{\large \scshape \link{https://www.cornellelectricvehicles.org/}{\textbf{Cornell Electric Vehicles}}}{\textbf{Ithaca, NY}}
-        {\textbf{Perception Lead, Autonomy Engineer}  $|$ Rust, Python, C++, PyTorch, ROS2, Docker}{\textbf{Oct 2024 -- Present}}
+        {\textbf{Perception Lead, Autonomy Engineer}  $|$ Rust, Python, C++, PyTorch, ROS2, Docker, Cargo}{\textbf{Oct 2024 -- Present}}
   \bullets
     \item Built a \textit{Rust LiDAR driver} with a calibrated sensor measurement model, decoding
       raw UDP packets and applying range, angular, timing, and sensor-offset corrections to
@@ -118,9 +118,11 @@
       on \textbf{80k+ points}, reducing LiDAR scan latency \textbf{10$\times$} to
       \textbf{20--30 ms} for dynamic obstacle region generation and detection, tracking, and
       longer-horizon planning
-    \item Implemented a \textit{real-time} point cloud to costmap algorithm that constructs accurate
-      representations of free-space and obstacle regions around the vehicle,
+    \item Implemented a \textit{real-time} point cloud to occupancy grid algorithm that constructs accurate
+      representations of known free-space and obstacle regions around the vehicle,
       \textit{enabling accurate and continuous spatial mapping} for path planning
+    \item Integrated camera–LiDAR fusion to combine RGB imagery with precise depth measurements for downstream algorithms
+    % \item Simulated LiDAR scans with a physics-based measurement model for \textit{testing perception algorithms} in variable environments
   \bulletsend
 
   \entry{\large \scshape \textbf{Noah Snavely Research Group}}{\textbf{Roosevelt Island, NY}}
@@ -135,8 +137,8 @@
       into a vision-language network that performs \textit{end-to-end 3D reconstruction}, designed to
       visually disambiguate between distinct, yet look-alike surfaces and serve as a
       \textit{more robust alternative to classical SfM}
-    \item Built a web viewer that runs on React, WebGL, and Flask to render
-      \textbf{4k+ doppelganger-pruned 3D reconstructions}
+    % \item Built a web viewer that runs on React, WebGL, and Flask to render
+    %   \textbf{4k+ doppelganger-pruned 3D reconstructions}
   \bulletsend
 
 \entriesend
@@ -144,6 +146,15 @@
 %----------PROJECTS----------
 \section{Projects}
 \entries
+
+  \project{\link{https://sophtsang.github.io/}{\textbf{Kernel::BSOD: OS Simulator}}  $|$ {Rust, WebAssembly, JavaScript, React, Three.js, Cargo}}{\textbf{Aug 2026 -- Present}}
+  \bullets
+    \item Built a Rust process-management subsystem compiled to WebAssembly, implementing process control block table,
+      explicit process lifecycle state machine, and zombie-process reaping to manage application instances through OS-inspired 
+      process states
+    \item Implemented a Hyprland-inspired binary space partitioning (BSP) window manager, integrating process lifecycle events with 
+      reducer-driven window state to coordinate process-to-window mappings, focus, and dynamic tiling
+  \bulletsend
 
   \project{\link{https://gdiac.cs.cornell.edu/gdiac/showcase/games/re_color/}{\textbf{Re:Color}} $|$ {Java, LibGDX, Agile Project Management}}{\textbf{Jan 2026 -- May 2026}}
   \bullets
@@ -155,22 +166,15 @@
       and building a \textit{custom paint splatter rendering engine}
   \bulletsend
 
-  \project{\link{https://sophtsang.github.io/}{\textbf{3D Desktop Simulation}}  $|$ {Python, Flask, C\#, Unity, React, Three.js, WebGL, REST, WebSocket, GCP}}{\textbf{ July 2025 -- Present}}
-  \bullets
-    \item Built an interactive 3D desktop environment using Three.js for
-      \textit{real-time 3D rendering}, simulating a computer interface with custom GLSL fragment
-      shaders and draggable project apps displayed in popup browser windows
-  \bulletsend
-
 \entriesend
 
 %----------SKILLS----------
 \section{Skills}
 \begin{itemize}[leftmargin=0in, label={}]
   {\item{
-    \textbf{\textit{Languages:}} Python, C/C++, C\#, Java, Rocq, OCaml, JavaScript/TypeScript, SQL,
-      HTML, CSS, Verilog, Rust \\
-    \textbf{\textit{Frameworks/Libraries:}} PyTorch, NumPy, Pandas, React.js, Three.js, Flask,
+    \textbf{\textit{Languages:}} Python, Rust, C/C++, C\#, Java, Rocq, OCaml, JavaScript/TypeScript, SQL,
+      HTML, CSS, Verilog \\
+    \textbf{\textit{Frameworks/Libraries:}} PyTorch, NumPy, React.js, Three.js, WebAssembly, Cargo,  Flask,
       OpenCV, sqlite3, WebGL, Matplotlib \\
     \textbf{\textit{Tools:}} Git, CI/CD, ROS2, Linux, Docker, VSCode, LibGDX, Unity, Render, GCP,
       Figma, Fusion 360, Slurm
