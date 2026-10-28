@@ -110,18 +110,18 @@
   \entry{\large \scshape \link{https://www.cornellelectricvehicles.org/}{\textbf{Cornell Electric Vehicles}}}{\textbf{Ithaca, NY}}
         {\textbf{Perception Lead, Autonomy Engineer}  $|$ Rust, Python, C++, PyTorch, ROS2, Docker, Cargo}{\textbf{Oct 2024 -- Present}}
   \bullets
-    \item Built a \textit{Rust LiDAR driver} with a calibrated sensor measurement model, decoding
-      raw UDP packets and applying range, angular, timing, and sensor-offset corrections to
-      generate 3D point clouds for \textit{live obstacle detection}
-    \item Developed C++ and Rust implementations of
-      \link{https://www.mdpi.com/2076-3417/10/23/8534}{\textit{real-time two-layer-graph clustering}}
-      on \textbf{80k+ points}, reducing LiDAR scan latency \textbf{10$\times$} to
-      \textbf{20--30 ms} for dynamic obstacle region generation and detection, tracking, and
-      longer-horizon planning
-    \item Implemented a \textit{real-time} point cloud to occupancy grid algorithm that constructs accurate
-      representations of known free-space and obstacle regions around the vehicle,
-      \textit{enabling accurate and continuous spatial mapping} for path planning
-    \item Integrated camera–LiDAR fusion to combine RGB imagery with precise depth measurements for downstream algorithms
+    \item Engineered \textit{C++/Rust LiDAR driver} with a calibrated sensor measurement model and IMU-based ego-motion compensation, decoding
+      raw UDP packets and correcting range, angular, timing, and sensor-offset errors to
+      produce \textit{temporally consistent, world-aligned 3D point clouds}, \textbf{reducing static-obstacle drift} from \textbf{0.92m to 0.04m} for \textit{downstream perception and planning}
+    \item Optimized \link{https://www.mdpi.com/2076-3417/10/23/8534}{\textit{two-layer-graph clustering}}
+      on \textbf{80k+ points} using azimuth-binning and range-adaptive thresholds, reducing scan latency to
+      \textbf{20--30ms} and far-range over-merging from \textbf{99\% to <10\%} for real-time obstacle detection and mapping
+    \item Developed \textit{occlusion-tolerant multi-object tracking} and point-cloud-to-\textit{occupancy-grid} mapping to maintain persistent obstacle IDs 
+      and map free space and obstacle regions across frames for longer-horizon motion planning
+    % \item Implemented a \textit{real-time} point cloud to occupancy grid algorithm that constructs accurate
+    %   representations of known free-space and obstacle regions around the vehicle,
+    %   \textit{enabling accurate and continuous spatial mapping} for path planning
+    % \item Integrated camera–LiDAR fusion to combine RGB imagery with precise depth measurements for downstream algorithms
     % \item Simulated LiDAR scans with a physics-based measurement model for \textit{testing perception algorithms} in variable environments
   \bulletsend
 
